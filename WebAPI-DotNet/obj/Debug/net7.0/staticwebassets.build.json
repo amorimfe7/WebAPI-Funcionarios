@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JaEVCrKLvX/3T0YT4FaNpA4h9UJRYuaOGvm3DHW6SCs=",
+  "Source": "WebAPI-DotNet",
+  "BasePath": "_content/WebAPI-DotNet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
