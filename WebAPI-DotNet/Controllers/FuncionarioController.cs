@@ -15,5 +15,14 @@ namespace WebAPI_DotNet.Controllers
             _funcionarioInterface = funcionarioInterface;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> GetFuncionarios()
+        {
+
+            ServiceResponse<List<FuncionarioModel>> serviceResponse = await _funcionarioInterface.GetFuncionarios();
+
+            return Ok(serviceResponse);
+        }
+
     }
 }
