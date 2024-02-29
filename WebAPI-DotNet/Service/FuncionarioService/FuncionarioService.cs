@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace WebAPI_DotNet.Service.FuncionarioService
 {
     public class FuncionarioService : IFuncionarioInterface
@@ -35,9 +37,38 @@ namespace WebAPI_DotNet.Service.FuncionarioService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<FuncionarioModel>> GetFuncionarioById(int id)
+        public async Task<ServiceResponse<FuncionarioModel>> GetFuncionarioById(int id)
         {
-            throw new NotImplementedException();
+            ServiceResponse<FuncionarioModel> serviceResponse = new ServiceResponse<FuncionarioModel>();
+
+            try
+            {
+                FuncionarioModel funcionario = _context.Funcionarios.AsNoTracking().FirstOrDefault(x => x.Id == id);
+                int funcionarioID = funcionario.Id;
+
+                if(funcionario == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "Funcionário não encontrado";
+                    serviceResponse.Sucesso = false;
+
+                } else if(funcionario.Id == id)
+                {
+                    serviceResponse.Mensagem = $"Funcionário [{funcionarioID}] encontrado!";
+                    serviceResponse.Sucesso = true;
+                }
+
+                serviceResponse.Dados = funcionario;
+                await _context.SaveChangesAsync();
+            }
+
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+
+            return serviceResponse;
         }
 
         public Task<ServiceResponse<List<FuncionarioModel>>> CreateFuncionario(FuncionarioModel novoFuncionario)
