@@ -210,9 +210,43 @@ namespace WebAPI_DotNet.Service.FuncionarioService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<List<FuncionarioModel>>> AtivaFuncionario(int id)
+        public async Task<ServiceResponse<List<FuncionarioModel>>> AtivaFuncionario(int id)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<FuncionarioModel>> serviceResponse = new ServiceResponse<List<FuncionarioModel>>();
+            FuncionarioModel funcionarioAtivar = _context.Funcionarios.AsNoTracking().FirstOrDefault(x => x.Id == id);
+
+            int funcionarioAtivarID = funcionarioAtivar.Id;
+
+            try
+            {
+                if(funcionarioAtivar == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = $"Funcionário [{funcionarioAtivarID}] não localizado!";
+                    serviceResponse.Sucesso = false;
+                }
+                else
+                {
+                    serviceResponse.Mensagem = $"Funcionário [{funcionarioAtivarID}] reativado!";
+                    serviceResponse.Sucesso = true;
+                }
+
+                funcionarioAtivar.Status = true;
+                funcionarioAtivar.DataDeAlteracao = DateTime.Now.ToLocalTime();
+
+                _context.Funcionarios.Update(funcionarioAtivar);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Dados = _context.Funcionarios.ToList();
+            }
+
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+
+            return serviceResponse;
         }
     }
 }
