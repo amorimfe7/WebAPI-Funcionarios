@@ -8,9 +8,31 @@ namespace WebAPI_DotNet.Service.FuncionarioService
             _context = context;
         }
 
-        public Task<ServiceResponse<List<FuncionarioModel>>> GetFuncionarios()
+        public async Task<ServiceResponse<List<FuncionarioModel>>> GetFuncionarios()
         {
+            ServiceResponse<List<FuncionarioModel>> serviceResponse = new ServiceResponse<List<FuncionarioModel>>();
 
+            try{
+                serviceResponse.Dados = _context.Funcionarios.ToList();
+
+                if(serviceResponse.Dados.Count == 0)
+                {
+                    serviceResponse.Mensagem = "Nenhum dado encontrado";
+                }
+                else
+                {
+                    serviceResponse.Mensagem = "Dados encontrados";
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+
+            return serviceResponse;
         }
 
         public Task<ServiceResponse<FuncionarioModel>> GetFuncionarioById(int id)
