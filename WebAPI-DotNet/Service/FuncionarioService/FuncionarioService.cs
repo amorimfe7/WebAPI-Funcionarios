@@ -73,7 +73,33 @@ namespace WebAPI_DotNet.Service.FuncionarioService
 
         public async Task<ServiceResponse<List<FuncionarioModel>>> CreateFuncionario(FuncionarioModel novoFuncionario)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<FuncionarioModel>> serviceResponse = new ServiceResponse<List<FuncionarioModel>>();
+            try
+            {
+                if(novoFuncionario == null)
+                {
+                    serviceResponse.Mensagem = "Informe os dados do Funcionário!";
+                    serviceResponse.Sucesso = false;
+                } else
+                {
+                    serviceResponse.Mensagem = $"Funcionário [{novoFuncionario.Nome}] criado!";
+                    serviceResponse.Sucesso = true;
+                }
+
+                novoFuncionario.DataDeCriacao = DateTime.Now.ToLocalTime();
+                novoFuncionario.DataDeAlteracao = DateTime.Now.ToLocalTime();
+                _context.Add(novoFuncionario);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Dados = _context.Funcionarios.ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+
+            return serviceResponse;
         }
 
         public Task<ServiceResponse<List<FuncionarioModel>>> UpdateFuncionario(FuncionarioModel editadoFuncionario)
