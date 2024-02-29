@@ -67,6 +67,7 @@ namespace WebAPI_DotNet.Controllers
             ServiceResponse<List<FuncionarioModel>> serviceResponse = await _funcionarioInterface.InativaFuncionario(id);
 
             return Ok(serviceResponse);
+
         }
     }
 }
