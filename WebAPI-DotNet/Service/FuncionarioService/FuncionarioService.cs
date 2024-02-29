@@ -3,9 +3,14 @@ namespace WebAPI_DotNet.Service.FuncionarioService
 {
     public class FuncionarioService : IFuncionarioInterface
     {
+        private readonly ApplicationDbContext _context;
+        public FuncionarioService(ApplicationDbContext context) {
+            _context = context;
+        }
+
         public Task<ServiceResponse<List<FuncionarioModel>>> GetFuncionarios()
         {
-            throw new NotImplementedException();
+
         }
 
         public Task<ServiceResponse<FuncionarioModel>> GetFuncionarioById(int id)
@@ -37,7 +42,6 @@ namespace WebAPI_DotNet.Service.FuncionarioService
         {
             throw new NotImplementedException();
         }
-
 
     }
 }
