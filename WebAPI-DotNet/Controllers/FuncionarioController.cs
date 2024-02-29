@@ -33,5 +33,13 @@ namespace WebAPI_DotNet.Controllers
             return Ok(serviceResponse);
         }
 
+        [HttpPost]
+
+        public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> CreateFuncionario(FuncionarioModel novoFuncionario)
+        {
+            ServiceResponse<List<FuncionarioModel>> serviceResponse = await _funcionarioInterface.CreateFuncionario(novoFuncionario);
+
+            return Ok(serviceResponse);
+        }
     }
 }
