@@ -71,7 +71,7 @@ namespace WebAPI_DotNet.Service.FuncionarioService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<List<FuncionarioModel>>> CreateFuncionario(FuncionarioModel novoFuncionario)
+        public async Task<ServiceResponse<List<FuncionarioModel>>> CreateFuncionario(FuncionarioModel novoFuncionario)
         {
             throw new NotImplementedException();
         }
@@ -95,6 +95,5 @@ namespace WebAPI_DotNet.Service.FuncionarioService
         {
             throw new NotImplementedException();
         }
-
     }
 }
