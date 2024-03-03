@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI_DotNet.Models;
 using WebAPI_DotNet.Service.FuncionarioService;
 
 namespace WebAPI_DotNet.Controllers
@@ -60,7 +61,7 @@ namespace WebAPI_DotNet.Controllers
             return Ok(serviceResponse);
         }
 
-        [HttpPut("/inativaFuncionario")]
+        [HttpPut("/inativaFuncionario/{id}")]
 
         public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> InativaFuncionario(int id)
         {
@@ -70,7 +71,7 @@ namespace WebAPI_DotNet.Controllers
 
         }
 
-        [HttpPut("/ativaFuncionario")]
+        [HttpPut("/ativaFuncionario/{id}")]
 
         public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> AtivaFuncionario(int id)
         {

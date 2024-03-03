@@ -1,4 +1,4 @@
-﻿namespace WebAPI_DotNet
+﻿namespace WebAPI_DotNet.Models
 {
     public class ServiceResponse<T>
     {

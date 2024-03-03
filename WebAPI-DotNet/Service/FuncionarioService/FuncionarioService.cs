@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using WebAPI_DotNet.Models;
 
 namespace WebAPI_DotNet.Service.FuncionarioService
 {

@@ -1,4 +1,6 @@
-﻿namespace WebAPI_DotNet.Service.FuncionarioService
+﻿using WebAPI_DotNet.Models;
+
+namespace WebAPI_DotNet.Service.FuncionarioService
 {
     public interface IFuncionarioInterface
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WebAPI_DotNet.Enum;
 
-namespace WebAPI_DotNet
+namespace WebAPI_DotNet.Models
 {
     public class FuncionarioModel
     {
@@ -9,7 +9,7 @@ namespace WebAPI_DotNet
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        public DepartamentoEnum Departamento {  get; set; }
+        public DepartamentoEnum Departamento { get; set; }
         public bool Status { get; set; }
         public TurnoEnum Turno { get; set; }
         public DateTime DataDeCriacao { get; set; } = DateTime.Now.ToLocalTime();
