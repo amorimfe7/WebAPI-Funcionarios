@@ -52,7 +52,7 @@ namespace WebAPI_DotNet.Controllers
             return Ok(serviceResponse);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
 
         public async Task<ActionResult<ServiceResponse<List<FuncionarioModel>>>> DeleteFuncionario(int id)
         {

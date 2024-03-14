@@ -5,7 +5,7 @@ namespace WebAPI_DotNet.Enum
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum TurnoEnum
     {
-        Manhã,
+        Manha,
         Tarde,
         Noite
     }
